@@ -1,1 +1,160 @@
+Question 1
+def ascending_order(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+
+def descending_order(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j] < arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+
+numbers = [64, 34, 25, 12, 22, 11, 90]
+print("Original array:", numbers)
+
+ascending_order(numbers)
+print("ascending order:", numbers)
+
+descending_order(numbers)
+print("descending order:", numbers)
+output:
+Original array: [64, 34, 25, 12, 22, 11, 90]
+ascending order: [11, 12, 22, 25, 34, 64, 90]
+descending order: [90, 64, 34, 25, 22, 12, 11]
+
+Question 2
+data = [20,25,10,45,22,50,40]
+max = data[0]
+for i in range(len(data)):
+  if(data[i]>max):
+    max = data[i]
+print(max)
+
+output:
+50
+
+Question 3
+class myclass:
+  def display():
+    print("I am in Myclass")
+class class_name(myclass):
+  def info():
+    print('my class name is python class')
+
+obj = class_name
+obj.display()
+obj.info()
+output:
+
+
+I am in Myclass
+I am in python class
+
+
+
+Question 4
+# Method overloading:
+class sum1:
+  def sum(a,b):
+    print("ans = ",a+b)
+class sum2:
+  def sum(a,b,c):
+    print("ans2 = ",(a+b+c))
+
+obj1 = sum1
+obj2 = sum2
+obj1.sum(1,2)
+obj2.sum(1,2,3)
+
+#method overriding
+class class1(): 
+	def __init__(self): 
+		self.value = "Inside class1"
+	def display(self): 
+		print(self.value) 
+class class2(class1): 
+	def __init__(self): 
+		self.value = "Inside class2"
+	def display(self): 
+    print(self.value) 
+obj1 = class1() 
+obj2 = class2() 
+
+obj1.display() 
+obj2.display() 
+output:
+
+ans =  3
+ans2 =  6
+Inside class1
+Inside class2
+
+
+
+Questron 5
+Not Attempt
+Question 6
+
+X= [[1,2,3],
+    [4 ,5,6],
+    [7 ,8,9]]
+ 
+Y = [[9,8,7],
+    [6,5,4],
+    [3,2,1]]
+
+Z = [[0,0,0],
+    [0,0,0],
+    [0,0,0]]
+
+for i in range(len(X)):
+   for j in range(len(X)):
+       Z[i][j] = X[i][j] + Y[i][j]
+
+for r in Z:
+   print(r)
+output:
+
+
+[10, 10, 10]
+[10, 10, 10]
+[10, 10, 10]
+
+Task 2:
+import pyaudio
+import wave
+
+def record_audio(file_name, duration=5, chunk=1024, format=pyaudio.paInt16, channels=2, rate=44100):
+    audio = pyaudio.PyAudio()
+
+    # Open stream
+    stream = audio.open(format=format, channels=channels,
+                        rate=rate, input=True,
+                        frames_per_buffer=chunk)
+
+    print("Recording...")
+
+    frames = []
+    for i in range(0, int(rate / chunk * duration)):
+        data = stream.read(chunk)
+        frames.append(data)
+
+    print("Finished recording.")
+    stream.stop_stream()
+    stream.close()
+    audio.terminate()
+
+
+    with wave.open(file_name, 'wb') as wf:
+        wf.setnchannels(channels)
+        wf.setsampwidth(audio.get_sample_size(format))
+        wf.setframerate(rate)
+        wf.writeframes(b''.join(frames))
+
+record_audio("recorded_audio.wav", duration=10)
+
 
